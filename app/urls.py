@@ -13,7 +13,7 @@ router = DefaultRouter()
 
 router.register(r'categoria', CategoriaViewSet, basename='categoria')
 router.register(r'usuarios', UserViewSet, basename='usuarios')
-router.register(r'editoras', EditoraViewSet, basename='editoras')
+router.register(r'editoras', EditoraViewSet, basename='editora')
 
 
 
