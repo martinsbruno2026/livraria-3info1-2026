@@ -7,7 +7,7 @@ from drf_spectacular.views import (
 )
 from rest_framework.routers import DefaultRouter
 
-from core.views import CategoriaViewSet, UserViewSet , EditoraViewSet
+from core.views import CategoriaViewSet, UserViewSet , EditoraViewSet , AutorViewSet
 
 router = DefaultRouter()
 
