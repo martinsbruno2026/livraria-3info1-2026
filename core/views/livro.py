@@ -1,31 +1,11 @@
-from django.db import models
-from django.core.validators import EmailValidator
-from rest_framework import serializers, viewsets
-from rest_framework.routers import DefaultRouter
+# livraria/views/livro_view.py
+from rest_framework import viewsets
+from core.models import Livro
+from core.serializers.livro import LivroSerializer
 
-class Autor(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100, null=True, blank=True)
-    
-    class Meta:
-        db_table = 'autor'
-    
-    def __str__(self):
-        return self.nome
-
-
-class AutorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Autor
-        fields = ['id', 'nome', 'email']
-
-
-class AutorViewSet(viewsets.ModelViewSet):
-    queryset = Autor.objects.all()
-    serializer_class = AutorSerializer
-
-
-router = DefaultRouter()
-router.register(r'autores', AutorViewSet)
-
-urlpatterns = router.urls
+class LivroViewSet(viewsets.ModelViewSet):
+    queryset = Livro.objects.all()
+    serializer_class = LivroSerializer
+    # filterset_fields = ['titulo', 'isbn']           # opcional
+    # search_fields = ['titulo', 'isbn']               # opcional
+    # ordering_fields = ['titulo', 'preco']            # opcional

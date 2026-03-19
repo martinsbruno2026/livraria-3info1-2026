@@ -1,5 +1,5 @@
-from .user import UserSerializer
+from .autor import AutorSerializer
 from .categoria import CategoriaSerializer
 from .editora import EditoraSerializer
-from .autor import AutorSerializer
 from .livro import LivroSerializer
+from .user import UserSerializer

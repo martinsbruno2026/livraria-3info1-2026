@@ -4,12 +4,15 @@ from rest_framework.response import Response
 from django.db import models
 from rest_framework import serializers
 
-class Autor(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100, null=True, blank=True)
+from rest_framework import viewsets
+from core.models import Autor   # ← importe o modelo daqui
+from core.serializers import AutorSerializer  # ajuste o caminho se necessário
 
-    def __str__(self):
-        return self.nome
+class AutorViewSet(viewsets.ModelViewSet):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+    # filterset_fields = ['nome']
+    # search_fields = ['nome']
 
 
 class AutorSerializer(serializers.ModelSerializer):
@@ -17,7 +20,3 @@ class AutorSerializer(serializers.ModelSerializer):
         model = Autor
         fields = ['id', 'nome', 'email']
 
-
-class AutorViewSet(viewsets.ModelViewSet):
-    queryset = Autor.objects.all()
-    serializer_class = AutorSerializer

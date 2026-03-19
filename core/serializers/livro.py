@@ -1,13 +1,7 @@
 from rest_framework import serializers
-from django.core.validators import EmailValidator
+from core.models import Livro
 
-class AutorSerializer(serializers.Serializer):
-    nome = serializers.CharField(max_length=100)
-    email = serializers.EmailField(max_length=100, required=False, allow_blank=True)
-
-
-class LivroSerializer(serializers.Serializer):
-    titulo = serializers.CharField(max_length=200)
-    autor = AutorSerializer()
-    descricao = serializers.CharField(required=False)
-    data_publicacao = serializers.DateField(required=False)
+class LivroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Livro
+        fields = '__all__'  # ou liste os campos: ['id', 'titulo', 'isbn', 'quantidade', 'preco']
